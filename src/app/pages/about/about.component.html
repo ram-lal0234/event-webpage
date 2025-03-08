@@ -1,0 +1,120 @@
+<!-- Hero Section -->
+<section class="relative min-h-[60vh] flex items-center">
+  <div class="absolute inset-0 z-0">
+    <img src="assets/images/about/hero-bg.jpg" 
+         alt="About Us" 
+         class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 relative z-10 text-white">
+    <div class="max-w-3xl">
+      <h1 class="text-5xl font-bold mb-6">About Us</h1>
+      <p class="text-xl">
+        Creating extraordinary events across the globe with passion, creativity, and precision.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Mission Section -->
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+        <p class="text-lg text-gray-600 mb-6">
+          To transform ordinary moments into extraordinary memories through innovative event planning and flawless execution.
+        </p>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="text-center p-6 bg-primary-50 rounded-xl">
+            <div class="text-4xl font-bold text-primary-600 mb-2">500+</div>
+            <div class="text-gray-600">Events Completed</div>
+          </div>
+          <div class="text-center p-6 bg-primary-50 rounded-xl">
+            <div class="text-4xl font-bold text-primary-600 mb-2">15+</div>
+            <div class="text-gray-600">Years Experience</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img src="assets/images/about/mission.jpg" 
+             alt="Our Mission" 
+             class="rounded-xl shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Milestones -->
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">Our Journey</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div *ngFor="let milestone of milestones" 
+           class="relative p-6 bg-white rounded-xl shadow-md">
+        <div class="text-2xl font-bold text-primary-600 mb-3">
+          {{milestone.year}}
+        </div>
+        <h3 class="text-xl font-semibold mb-2">{{milestone.title}}</h3>
+        <p class="text-gray-600">{{milestone.description}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Global Offices -->
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">Our Global Presence</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div *ngFor="let office of offices" 
+           class="bg-white rounded-xl overflow-hidden shadow-lg">
+        <div class="h-48">
+          <img [src]="office.image" 
+               [alt]="office.city"
+               class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2">{{office.city}}</h3>
+          <div class="space-y-2 text-gray-600">
+            <p>{{office.address}}</p>
+            <p>{{office.phone}}</p>
+            <p>{{office.email}}</p>
+            <p class="text-sm">{{office.timezone}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="py-20 bg-primary-50">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-12">Our Values</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-6">
+        <i class="fas fa-heart text-4xl text-primary-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-3">Passion</h3>
+        <p class="text-gray-600">
+          We pour our heart into every event, ensuring each detail reflects our commitment to excellence.
+        </p>
+      </div>
+      <div class="p-6">
+        <i class="fas fa-lightbulb text-4xl text-primary-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-3">Innovation</h3>
+        <p class="text-gray-600">
+          Constantly pushing boundaries to create unique and memorable experiences.
+        </p>
+      </div>
+      <div class="p-6">
+        <i class="fas fa-handshake text-4xl text-primary-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-3">Integrity</h3>
+        <p class="text-gray-600">
+          Building trust through transparency and honest relationships with our clients.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

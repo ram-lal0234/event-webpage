@@ -1,0 +1,121 @@
+<!-- Hero Section -->
+ <section class="relative min-h-[90vh] flex items-center">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="../../../assets/images/event-bg.jpg"
+           alt="Event background" 
+           class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    </div>
+    
+    <!-- Hero Content -->
+    <div class="container relative z-10 text-white">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+          Turning Your Vision Into Unforgettable Events
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-gray-200">
+          Award-winning event planning and management services for moments that matter.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a routerLink="/contact" class="btn btn-primary text-lg px-8 py-3">
+            Get Started
+          </a>
+          <a routerLink="/portfolio" class="btn bg-white text-gray-900 hover:bg-gray-100 text-lg px-8 py-3">
+            View Portfolio
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          From intimate gatherings to large-scale productions, we bring your events to life
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div *ngFor="let service of services" 
+             class="group p-8 bg-gray-50 rounded-xl transition-all duration-300 hover:shadow-xl">
+          <i [class]="service.icon + ' text-4xl text-primary-600 mb-4 block'"></i>
+          <h3 class="text-xl font-semibold mb-3">{{service.title}}</h3>
+          <p class="text-gray-600 mb-4">{{service.description}}</p>
+          <a routerLink="/services" 
+             class="text-primary-600 font-medium group-hover:text-primary-700">
+            Learn More →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section bg-primary-600 text-white">
+    <div class="container">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div *ngFor="let stat of stats">
+          <div class="text-4xl md:text-5xl font-bold mb-2">{{stat.value}}</div>
+          <div class="text-lg text-primary-100">{{stat.label}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section bg-gray-50">
+    <div class="container">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">What Our Clients Say</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div *ngFor="let testimonial of testimonials" 
+             class="bg-white p-8 rounded-xl shadow-md">
+          <!-- Testimonials section -->
+          <div class="flex items-center mb-4">
+            <app-avatar 
+              [imageUrl]="testimonial.image" 
+              [altText]="testimonial.name"
+              size="md"
+              class="mr-4">
+            </app-avatar>
+            <div>
+              <div class="font-semibold">{{testimonial.name}}</div>
+              <div class="text-gray-600 text-sm">{{testimonial.company}}</div>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">"{{testimonial.quote}}"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted By -->
+  <!-- <section class="section bg-white">
+    <div class="container">
+      <h2 class="text-2xl font-semibold text-center mb-12">Trusted By Industry Leaders</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+        <img *ngFor="let logo of clientLogos" 
+             [src]="logo" 
+             alt="Client logo"
+             class="h-12 object-contain mx-auto grayscale hover:grayscale-0 transition-all duration-300">
+      </div>
+    </div>
+  </section> -->
+
+  <!-- CTA Section -->
+  <section class="section bg-primary-50">
+    <div class="container text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Create Something Amazing?</h2>
+      <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+        Let's work together to bring your vision to life. Contact us today to start planning your next event.
+      </p>
+      <a routerLink="/contact" class="btn btn-primary text-lg px-8 py-3">
+        Get in Touch
+      </a>
+    </div>
+  </section>
+`

@@ -1,0 +1,87 @@
+<!-- Hero Section -->
+<section class="bg-primary-50 py-20">
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
+      <p class="text-xl text-gray-600">
+        From intimate gatherings to grand celebrations, we bring your vision to life with creativity and precision.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Services Grid -->
+<section class="py-16">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div *ngFor="let service of services" class="service-card">
+        <!-- Service Image -->
+        <div class="relative h-64 mb-6 rounded-xl overflow-hidden">
+          <img [src]="service.image" [alt]="service.title" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+            <i [class]="service.icon + ' text-5xl text-white'"></i>
+          </div>
+        </div>
+
+        <!-- Service Content -->
+        <div class="p-6 bg-white rounded-xl shadow-lg">
+          <h3 class="text-2xl font-bold mb-4">{{service.title}}</h3>
+          <p class="text-gray-600 mb-6">{{service.description}}</p>
+          
+          <!-- Features List -->
+          <ul class="space-y-3">
+            <li *ngFor="let feature of service.features" class="flex items-center">
+              <i class="fas fa-check text-primary-600 mr-3"></i>
+              <span>{{feature}}</span>
+            </li>
+          </ul>
+
+          <!-- CTA Button -->
+          <a routerLink="/contact" class="mt-8 inline-block bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors">
+            Inquire Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="bg-gray-50 py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">Why Choose Our Services?</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="text-center p-6">
+        <i class="fas fa-award text-4xl text-primary-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-3">Expert Team</h3>
+        <p class="text-gray-600">Experienced professionals dedicated to making your event perfect.</p>
+      </div>
+      
+      <div class="text-center p-6">
+        <i class="fas fa-hand-holding-heart text-4xl text-primary-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-3">Personalized Approach</h3>
+        <p class="text-gray-600">Tailored solutions that match your unique vision and requirements.</p>
+      </div>
+      
+      <div class="text-center p-6">
+        <i class="fas fa-clock text-4xl text-primary-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-3">Timely Delivery</h3>
+        <p class="text-gray-600">Efficient planning and execution that meets your deadlines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-primary-600 text-white py-16">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-6">Ready to Create Something Amazing?</h2>
+    <p class="text-xl mb-8 max-w-2xl mx-auto">
+      Let's work together to bring your vision to life. Contact us today to start planning your next event.
+    </p>
+    <a routerLink="/contact" class="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors">
+      Get Started
+    </a>
+  </div>
+</section>

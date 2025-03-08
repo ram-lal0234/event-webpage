@@ -1,0 +1,74 @@
+<!-- Hero Section -->
+<section class="bg-primary-50 py-20">
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Meet Our Team</h1>
+      <p class="text-xl text-gray-600">
+        Dedicated professionals committed to creating extraordinary events and memorable experiences.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Team Grid -->
+<section class="py-16">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div *ngFor="let member of teamMembers" 
+           class="team-card bg-white rounded-xl p-6 text-center flex flex-col items-center">
+        <!-- Avatar -->
+        <div class="mb-6 flex justify-center">
+          <app-avatar 
+            [imageUrl]="member.image"
+            [altText]="member.name"
+            size="lg"
+            class="mx-auto">
+          </app-avatar>
+        </div>
+
+        <!-- Member Info -->
+        <h3 class="text-xl font-bold mb-2">{{member.name}}</h3>
+        <p class="text-primary-600 font-medium mb-4">{{member.role}}</p>
+        <p class="text-gray-600 mb-6">{{member.bio}}</p>
+
+        <!-- Expertise -->
+        <div class="mb-6">
+          <div class="flex flex-wrap gap-2 justify-center">
+            <span *ngFor="let skill of member.expertise"
+                  class="px-3 py-1 bg-gray-100 rounded-full text-sm">
+              {{skill}}
+            </span>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="flex justify-center gap-4">
+          <a *ngIf="member.social.linkedin"
+             [href]="member.social.linkedin"
+             class="text-gray-400 hover:text-primary-600 transition-colors"
+             target="_blank">
+            <i class="fab fa-linkedin text-xl"></i>
+          </a>
+          <a *ngIf="member.social.twitter"
+             [href]="member.social.twitter"
+             class="text-gray-400 hover:text-primary-600 transition-colors"
+             target="_blank">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a *ngIf="member.social.instagram"
+             [href]="member.social.instagram"
+             class="text-gray-400 hover:text-primary-600 transition-colors"
+             target="_blank">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a *ngIf="member.social.pinterest"
+             [href]="member.social.pinterest"
+             class="text-gray-400 hover:text-primary-600 transition-colors"
+             target="_blank">
+            <i class="fab fa-pinterest text-xl"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
