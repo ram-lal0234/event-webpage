@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -9,7 +9,9 @@ import { RouterLink } from '@angular/router';
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss']
 })
-export class ServicesComponent {
+export class ServicesComponent implements AfterViewInit {
+  @ViewChildren('animateOnScroll') animateElements!: QueryList<ElementRef>;
+
   services = [
     {
       title: 'Corporate Events',
@@ -23,7 +25,8 @@ export class ServicesComponent {
         'Corporate Galas',
         'Business Meetings'
       ],
-      image: 'assets/images/services/corporate.jpg'
+      image: 'assets/images/services/corporate.jpg',
+      color: 'from-blue-500 to-indigo-600'
     },
     {
       title: 'Wedding Planning',
@@ -37,7 +40,8 @@ export class ServicesComponent {
         'Decor & Design',
         'Budget Management'
       ],
-      image: 'assets/images/services/wedding.jpg'
+      image: 'assets/images/services/wedding.jpg',
+      color: 'from-pink-500 to-rose-600'
     },
     {
       title: 'Social Events',
@@ -51,7 +55,8 @@ export class ServicesComponent {
         'Private Dinners',
         'Themed Parties'
       ],
-      image: 'assets/images/services/social.jpg'
+      image: 'assets/images/services/social.jpg',
+      color: 'from-purple-500 to-indigo-600'
     },
     {
       title: 'Virtual Events',
@@ -65,7 +70,65 @@ export class ServicesComponent {
         'Virtual Award Shows',
         'Digital Product Launches'
       ],
-      image: 'assets/images/services/virtual.jpg'
+      image: 'assets/images/services/virtual.jpg',
+      color: 'from-cyan-500 to-blue-600'
     }
   ];
+
+  benefits = [
+    {
+      icon: 'fas fa-award',
+      title: 'Expert Team',
+      description: 'Experienced professionals dedicated to making your event perfect.',
+      color: 'from-yellow-400 to-amber-500'
+    },
+    {
+      icon: 'fas fa-hand-holding-heart',
+      title: 'Personalized Approach',
+      description: 'Tailored solutions that match your unique vision and requirements.',
+      color: 'from-pink-400 to-rose-500'
+    },
+    {
+      icon: 'fas fa-clock',
+      title: 'Timely Delivery',
+      description: 'Efficient planning and execution that meets your deadlines.',
+      color: 'from-blue-400 to-indigo-500'
+    },
+    {
+      icon: 'fas fa-shield-alt',
+      title: 'Quality Assurance',
+      description: 'Rigorous quality checks to ensure flawless event execution.',
+      color: 'from-green-400 to-emerald-500'
+    }
+  ];
+
+  ngAfterViewInit() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            if (entry.target.classList.contains('fade-up')) {
+              entry.target.classList.add('translate-y-0');
+            } else if (entry.target.classList.contains('fade-left')) {
+              entry.target.classList.add('translate-x-0');
+            } else if (entry.target.classList.contains('fade-right')) {
+              entry.target.classList.add('translate-x-0');
+            } else if (entry.target.classList.contains('scale-in')) {
+              entry.target.classList.add('scale-100');
+            } else if (entry.target.classList.contains('bounce-in')) {
+              entry.target.classList.add('scale-100');
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    this.animateElements.forEach(element => {
+      observer.observe(element.nativeElement);
+    });
+  }
 }

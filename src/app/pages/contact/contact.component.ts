@@ -1,78 +1,86 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  template: `
-    <section class="section">
-      <div class="container max-w-4xl">
-        <h1 class="text-4xl font-bold text-center mb-12">Contact Us</h1>
-        
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
-          <div>
-            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-            <input type="text" id="name" formControlName="name"
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500">
-            <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.invalid"
-                 class="text-red-600 text-sm mt-1">
-              Please enter your name
-            </div>
-          </div>
-
-          <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input type="email" id="email" formControlName="email"
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500">
-            <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid"
-                 class="text-red-600 text-sm mt-1">
-              Please enter a valid email address
-            </div>
-          </div>
-
-          <div>
-            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-            <textarea id="message" formControlName="message" rows="5"
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"></textarea>
-            <div *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.invalid"
-                 class="text-red-600 text-sm mt-1">
-              Please enter your message
-            </div>
-          </div>
-
-          <button type="submit" 
-                  [disabled]="contactForm.invalid || isSubmitting"
-                  class="btn btn-primary w-full">
-            {{ isSubmitting ? 'Sending...' : 'Send Message' }}
-          </button>
-        </form>
-      </div>
-    </section>
-  `
+  imports: [CommonModule, FormsModule, RouterModule],
+  templateUrl: './contact.component.html',
+  styleUrl : './contact.component.scss',
 })
-export class ContactComponent {
-  contactForm: FormGroup;
-  isSubmitting = false;
+export class ContactComponent implements AfterViewInit {
+  @ViewChildren('animateOnScroll') animateElements!: QueryList<ElementRef>;
 
-  constructor(private fb: FormBuilder) {
-    this.contactForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      message: ['', Validators.required]
-    });
-  }
+  contactInfo = {
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  };
+
+  contactDetails = [
+    {
+      icon: 'fas fa-map-marker-alt',
+      title: 'Visit Us',
+      details: ['123 Event Street', 'New York, NY 10001', 'United States'],
+      color: 'from-blue-500 to-indigo-600'
+    },
+    {
+      icon: 'fas fa-phone',
+      title: 'Call Us',
+      details: ['+1 (555) 123-4567', '+1 (555) 987-6543'],
+      color: 'from-purple-500 to-indigo-600'
+    },
+    {
+      icon: 'fas fa-envelope',
+      title: 'Email Us',
+      details: ['info@eventpro.com', 'support@eventpro.com'],
+      color: 'from-pink-500 to-rose-600'
+    },
+    {
+      icon: 'fas fa-clock',
+      title: 'Working Hours',
+      details: ['Monday - Friday: 9:00 AM - 6:00 PM', 'Saturday: 10:00 AM - 4:00 PM'],
+      color: 'from-green-500 to-emerald-600'
+    }
+  ];
+
+  formSubmitted = false;
 
   onSubmit() {
-    if (this.contactForm.valid) {
-      this.isSubmitting = true;
-      // Here you would typically make an API call to submit the form
-      console.log(this.contactForm.value);
-      setTimeout(() => {
-        this.isSubmitting = false;
-        this.contactForm.reset();
-      }, 1500);
-    }
+    // Here you would typically handle the form submission
+    // For now, we'll just show a success message
+    this.formSubmitted = true;
+  }
+
+  ngAfterViewInit() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            if (entry.target.classList.contains('fade-up')) {
+              entry.target.classList.add('translate-y-0');
+            } else if (entry.target.classList.contains('fade-left')) {
+              entry.target.classList.add('translate-x-0');
+            } else if (entry.target.classList.contains('fade-right')) {
+              entry.target.classList.add('translate-x-0');
+            } else if (entry.target.classList.contains('scale-in')) {
+              entry.target.classList.add('scale-100');
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    this.animateElements.forEach(element => {
+      observer.observe(element.nativeElement);
+    });
   }
 }

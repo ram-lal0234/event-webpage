@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-about',
@@ -8,7 +9,27 @@ import { CommonModule } from '@angular/common';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
-export class AboutComponent {
+export class AboutComponent implements AfterViewInit {
+  @ViewChildren('animateOnScroll') animateElements!: QueryList<ElementRef>;
+
+  values = [
+    {
+      icon: 'fas fa-heart',
+      title: 'Passion',
+      description: 'We pour our heart into every event, ensuring each detail reflects our commitment to excellence.'
+    },
+    {
+      icon: 'fas fa-lightbulb',
+      title: 'Innovation',
+      description: 'Constantly pushing boundaries to create unique and memorable experiences.'
+    },
+    {
+      icon: 'fas fa-handshake',
+      title: 'Integrity',
+      description: 'Building trust through transparency and honest relationships with our clients.'
+    }
+  ];
+
   offices = [
     {
       city: 'San Francisco',
@@ -66,4 +87,34 @@ export class AboutComponent {
       description: 'Recognized as top event planning company globally'
     }
   ];
+
+  ngAfterViewInit() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            if (entry.target.classList.contains('fade-up')) {
+              entry.target.classList.add('translate-y-0');
+            } else if (entry.target.classList.contains('fade-left')) {
+              entry.target.classList.add('translate-x-0');
+            } else if (entry.target.classList.contains('fade-right')) {
+              entry.target.classList.add('translate-x-0');
+            } else if (entry.target.classList.contains('scale-in')) {
+              entry.target.classList.add('scale-100');
+            } else if (entry.target.classList.contains('bounce-in')) {
+              entry.target.classList.add('scale-100');
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    this.animateElements.forEach(element => {
+      observer.observe(element.nativeElement);
+    });
+  }
 }
